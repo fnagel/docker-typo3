@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  webserver:
+    container_name: typo3-web-container
+    domainname: ${APACHE_DOMAIN}
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - webroot:/var/www/html
+    networks:
+      - db
+    depends_on:
+      - db
+    environment:
+      - TYPO3_CONTEXT=${TYPO3_CONTEXT}
+      - APACHE_DOMAIN=${APACHE_DOMAIN}
+      - APACHE_DOCUMENT_ROOT=/var/www/html/web
+
+  db:
+    container_name: typo3-db-container
+    image: mariadb:10.3
+    command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - path=var/lib/mysql
+    networks:
+      - db
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+
+volumes:
+  webroot:
+
+networks:
+  db:

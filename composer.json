@@ -1,0 +1,19 @@
+{
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://composer.typo3.org/"
+    }
+  ],
+  "require": {
+    "typo3/cms": "^8.7",
+    "typo3/cms-introduction": "^3.0",
+    "helhum/typo3-console": "^5.0"
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": "web"
+    }
+  }
+}
