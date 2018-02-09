@@ -1,5 +1,23 @@
 # TYPO3 Docker
 
+## What is this?
+
+Yet another TYPO3 CMS docker package. It's simple, understandable and yet fully functional.
+
+_Suitable for development and production._
+
+
+**What is included?**
+
+* A minimal production image
+* A development image with
+    * Xdebug
+    * Mailhog
+    * Adminer
+    * Ruby
+    * SASS
+    * Node.js (npm)
+
 
 ## Requirements
 
@@ -15,7 +33,16 @@
 
 ## Usage
 
-_tbd_
+**Prod**
+
+`docker-compose -f docker-compose.yml up -d`
+
+**Dev**
+
+`docker-compose -f docker-compose.yml build`
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d`
+
+_Note:_ We need to build the non dev image first so the dev image can extend (`FROM`) it. 
 
 
 ### TYPO3 Installing tool

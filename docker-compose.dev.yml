@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  webserver:
+    container_name: typo3-web-container-dev
+    image: typo3.webserver.dev
+    build: ./dev
+    domainname: dev.${APACHE_DOMAIN}
+    environment:
+      - TYPO3_CONTEXT=Development
+    networks:
+      - mailhog
+
+  db:
+    container_name: typo3-db-container-dev
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - db
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - mailhog
+
+networks:
+  mailhog:

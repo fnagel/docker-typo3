@@ -3,6 +3,7 @@ version: '3'
 services:
   webserver:
     container_name: typo3-web-container
+    image: typo3.webserver
     domainname: ${APACHE_DOMAIN}
     build: .
     ports:
