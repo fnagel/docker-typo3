@@ -1,8 +1,3 @@
-## Install composer file
-FROM composer:1.6 AS composer
-COPY composer.json /app
-RUN composer install --no-interaction --no-dev --no-progress --optimize-autoloader
-
 ## Install webserver
 FROM php:7.2-apache
 
@@ -70,14 +65,3 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 RUN sed -ri -e 's!#ServerName www.example.com!ServerName ${APACHE_DOMAIN}!g' /etc/apache2/sites-available/*.conf
 
 WORKDIR /var/www/html
-
-COPY --from=composer /app/web ./web
-COPY --from=composer /app/vendor ./vendor
-
-# Prepare TYPO3
-RUN vendor/bin/typo3cms install:fixfolderstructure
-RUN touch web/FIRST_INSTALL
-RUN touch web/typo3conf/ENABLE_INSTALL_TOOL
-
-# @todo Is this a good approach?
-RUN chown -R www-data:www-data ./web

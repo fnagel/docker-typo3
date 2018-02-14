@@ -10,6 +10,7 @@ _Suitable for development and production._
 **What is included?**
 
 * A minimal production image
+* A TYPO3 CMS "Introduction package" image
 * A development image with
     * Xdebug
     * Mailhog
@@ -17,35 +18,74 @@ _Suitable for development and production._
     * Ruby
     * SASS
     * Node.js (npm)
-
-
-## Requirements
-
-### General requirements
-
-* Working `docker-compose` command
-
-### Project requirements
-
-* `composer` based TYPO3 project
-* Using `/web` folder for all public files (speak: using the `web-dir` directive, see default composer.json)
-
+* A simple way to create an image for your custom project
 
 ## Usage
 
+_Note:_ We need to build the base image first so the dev and demo image can extend (`FROM`) it. 
+
+
 **Prod**
 
-`docker-compose -f docker-compose.yml up -d`
+Build and run a minimal production / base image:
+
+```
+docker-compose -f docker-compose.yml up -d
+```
 
 **Dev**
 
-`docker-compose -f docker-compose.yml build`
-`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d`
+Build and run an image with development tools (composer, xdebug, etc.):
 
-_Note:_ We need to build the non dev image first so the dev image can extend (`FROM`) it. 
+```
+docker-compose -f docker-compose.yml build
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+```
+
+Default domain is [http://dev.typo3.vm]()
+
+**Demo**
+
+Build and run an image with installed and fully functional introduction package:
+
+```
+docker-compose -f docker-compose.yml build
+docker-compose -f docker-compose.yml -f docker-compose.demo.yml up -d
+```
+
+Default domain is [http://demo.typo3.vm]()
 
 
-### TYPO3 Installing tool
+### Use with existing projects
+
+**Project requirements**
+
+* A GIT repository for your project
+* A `composer` based TYPO3 project
+* Using `/web` folder for all public files (speak: using the `web-dir` directive, see composer.json in `/demo` folder)
+
+
+**How to integrate with your existing TYPO3 CMS project**
+
+* Clone this repository to `.docker` sub folder of your project
+* Copy the `.env` file to your project root folder and change variables as needed
+* Run the following commands:
+
+```
+cd .docker
+docker-compose -f docker-compose.yml build
+cd ..
+docker-compose -f .docker/docker-compose.yml -f .docker/docker-compose.project.yml up -d
+```
+
+**This will:**
+
+* create production image with web server and database
+* install your composer dependencies
+* add your `web` and `fileadmin` files
+
+
+### Database credentials
 
 Default values for the database connection are:
 

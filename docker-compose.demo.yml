@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  webserver:
+    image: typo3.webserver.demo.${APACHE_DOMAIN}
+    build: ./demo
+    domainname: demo.${APACHE_DOMAIN}
+    environment:
+      - TYPO3_CONTEXT=Production
+
+  db:

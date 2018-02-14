@@ -2,10 +2,8 @@ version: '3'
 
 services:
   webserver:
-    container_name: typo3-web-container
     image: typo3.webserver
-    domainname: ${APACHE_DOMAIN}
-    build: .
+    build: ./base
     ports:
       - "80:80"
       - "443:443"
@@ -21,7 +19,6 @@ services:
       - APACHE_DOCUMENT_ROOT=/var/www/html/web
 
   db:
-    container_name: typo3-db-container
     image: mariadb:10.3
     command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:

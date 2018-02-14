@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  webserver:
+    image: typo3.webserver.${APACHE_DOMAIN}
+    build:
+      context: ../
+      dockerfile: ./.docker/project/Dockerfile
+    domainname: ${APACHE_DOMAIN}
+    environment:
+      - TYPO3_CONTEXT=${TYPO3_CONTEXT}
+
+  db:

@@ -2,8 +2,7 @@ version: '3'
 
 services:
   webserver:
-    container_name: typo3-web-container-dev
-    image: typo3.webserver.dev
+    image: typo3.webserver.dev.${APACHE_DOMAIN}
     build: ./dev
     domainname: dev.${APACHE_DOMAIN}
     environment:
@@ -12,11 +11,9 @@ services:
       - mailhog
 
   db:
-    container_name: typo3-db-container-dev
 
   adminer:
     image: adminer
-    restart: always
     ports:
       - 8080:8080
     networks:
