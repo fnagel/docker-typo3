@@ -9,5 +9,3 @@ services:
     domainname: ${APACHE_DOMAIN}
     environment:
       - TYPO3_CONTEXT=${TYPO3_CONTEXT}
-
-  db:

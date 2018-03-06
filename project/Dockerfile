@@ -15,8 +15,7 @@ COPY --from=composer /app/vendor ./vendor
 COPY ./web/* /web
 COPY ./fileadmin /fileadmin
 
-# @todo Is this a good approach?
-RUN chown -R www-data:www-data ./web
-
 # Prepare TYPO3
 RUN vendor/bin/typo3cms install:fixfolderstructure
+
+RUN chown -R www-data:www-data ./web

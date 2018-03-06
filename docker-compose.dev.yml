@@ -10,8 +10,6 @@ services:
     networks:
       - mailhog
 
-  db:
-
   adminer:
     image: adminer
     ports:

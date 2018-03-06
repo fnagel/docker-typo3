@@ -8,7 +8,10 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - webroot:/var/www/html
+      - fileadmin:/var/www/html/web/fileadmin
+      - l10n:/var/www/html/web/typo3conf/l10n
+      - typo3temp:/var/www/html/web/typo3temp
+      - uploads:/var/www/html/web/uploads
     networks:
       - db
     depends_on:
@@ -24,7 +27,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - path=var/lib/mysql
+      - path=/var/lib/mysql
     networks:
       - db
     environment:
@@ -34,7 +37,10 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
 
 volumes:
-  webroot:
+  fileadmin:
+  l10n:
+  typo3temp:
+  uploads:
 
 networks:
   db:

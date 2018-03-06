@@ -9,10 +9,9 @@ FROM typo3.webserver
 COPY --from=composer /app/web ./web
 COPY --from=composer /app/vendor ./vendor
 
-# @todo Is this a good approach?
-RUN chown -R www-data:www-data ./web
-
 # Prepare TYPO3
 RUN vendor/bin/typo3cms install:fixfolderstructure
 RUN touch web/FIRST_INSTALL
 RUN touch web/typo3conf/ENABLE_INSTALL_TOOL
+
+RUN chown -R www-data:www-data ./web
