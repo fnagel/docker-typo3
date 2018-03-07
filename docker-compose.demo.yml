@@ -6,4 +6,5 @@ services:
     build: ./demo
     domainname: demo.${APACHE_DOMAIN}
     environment:
-      - TYPO3_CONTEXT=Production
+      - TYPO3_CONTEXT=${TYPO3_CONTEXT}
+      - APACHE_DOMAIN=demo.${APACHE_DOMAIN}
