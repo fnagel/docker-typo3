@@ -53,6 +53,12 @@ docker-compose -f docker-compose.yml build
 docker-compose -f docker-compose.yml -f docker-compose.demo.yml up -d
 ```
 
+Use the following command to install the introduction package using TYPO3 console:
+
+```
+docker-compose exec /bin/bash ./install.sh
+```
+
 Default domain is [http://demo.typo3.vm]()
 
 
@@ -63,7 +69,7 @@ Default domain is [http://demo.typo3.vm]()
 * A GIT repository for your project
 * A `composer` based TYPO3 project
 * Using `/web` folder for all public files (speak: using the `web-dir` directive, see composer.json in `/demo` folder)
-
+* Make sure your project composer file contains `helhum/typo3-console` as a dependency
 
 **How to integrate with your existing TYPO3 CMS project**
 

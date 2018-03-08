@@ -13,5 +13,6 @@ COPY --from=composer /app/vendor ./vendor
 RUN vendor/bin/typo3cms install:fixfolderstructure
 RUN touch web/FIRST_INSTALL
 RUN touch web/typo3conf/ENABLE_INSTALL_TOOL
+COPY ./install.sh /var/www/html
 
 RUN chown -R www-data:www-data ./web
