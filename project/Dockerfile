@@ -1,11 +1,14 @@
+ARG php_tag
+
 ## Install composer file
-FROM composer:1.6 AS composer
+FROM composer:1 AS composer
 COPY ./composer.json /app
 COPY ./composer.lock /app
-RUN composer install --no-interaction --no-dev --no-progress --optimize-autoloader
+RUN composer install --no-interaction --no-dev --no-progress --optimize-autoloader --ignore-platform-reqs
 
 ## Install webserver
-FROM typo3.webserver
+ARG php_tag
+FROM typo3.webserver:$php_tag
 
 # Copy composer dependencies
 COPY --from=composer /app/web ./web

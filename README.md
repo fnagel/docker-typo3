@@ -1,5 +1,6 @@
 # TYPO3 Docker
 
+
 ## What is this?
 
 Yet another TYPO3 CMS docker package. It's simple, understandable and yet fully functional.
@@ -19,6 +20,7 @@ _Suitable for development and production._
     * SASS
     * Node.js (npm)
 * A simple way to create an image for your custom project
+
 
 ## Usage
 
@@ -101,6 +103,16 @@ Host: `db`
 Port: `3306`
 
 _Some of those can be changed in the `.env` file._
+
+
+### Change PHP version
+
+Change the used PHP version by using:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml build
+docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml -f docker-compose.demo.yml up -d
+```
 
 
 ## Issues

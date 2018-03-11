@@ -3,7 +3,8 @@ version: '3'
 services:
   webserver:
     image: typo3.webserver.dev.${APACHE_DOMAIN}
-    build: ./dev
+    build:
+      context: ./dev
     domainname: dev.${APACHE_DOMAIN}
     environment:
       - TYPO3_CONTEXT=Development

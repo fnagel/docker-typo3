@@ -1,7 +1,10 @@
-FROM composer:1.6 AS composer
+ARG php_tag
+
+FROM composer:1 AS composer
 
 ## Install webserver
-FROM typo3.webserver
+ARG php_tag
+FROM typo3.webserver:$php_tag
 
 ## Install composer
 COPY --from=composer /usr/bin/composer /usr/bin/composer

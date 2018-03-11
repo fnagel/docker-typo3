@@ -1,5 +1,7 @@
-## Install webserver
-FROM php:7.2-apache
+ARG php_tag
+
+## Extend from PHP image
+FROM php:$php_tag
 
 # Install the PHP extensions we need
 RUN set -ex; \
@@ -63,5 +65,7 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Make domain available in apache
 RUN sed -ri -e 's!#ServerName www.example.com!ServerName ${APACHE_DOMAIN}!g' /etc/apache2/sites-available/*.conf
+
+RUN php --version
 
 WORKDIR /var/www/html

@@ -2,8 +2,12 @@ version: '3'
 
 services:
   webserver:
-    image: typo3.webserver
-    build: ./base
+    # Keep the tag in sync with the "php_tag" build arg!
+    image: typo3.webserver:7.2-apache
+    build:
+      context: ./base
+      args:
+        php_tag: "7.2-apache"
     ports:
       - "80:80"
       - "443:443"
