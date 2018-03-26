@@ -3,7 +3,7 @@
 
 ## What is this?
 
-Yet another TYPO3 CMS docker package. It's simple, understandable and yet fully functional.
+Yet another TYPO3 CMS Docker package. It's simple, understandable and yet fully functional.
 
 _Suitable for development and production._
 
@@ -24,7 +24,7 @@ _Suitable for development and production._
 
 ## Usage
 
-_Note:_ We need to build the base image first so the dev and demo image can extend (`FROM`) it. 
+_Note:_ We need to build the base image first so the dev and demo image can extend (`FROM`) it.
 
 
 **Prod**
@@ -32,15 +32,16 @@ _Note:_ We need to build the base image first so the dev and demo image can exte
 Build and run a minimal production / base image:
 
 ```
-docker-compose -f docker-compose.yml up -d
+docker-compose build
 ```
+This will create the `typo3.webserver` image.
 
 **Dev**
 
 Build and run an image with development tools (composer, xdebug, etc.):
 
 ```
-docker-compose -f docker-compose.yml build
+docker-compose build
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 ```
 
@@ -51,14 +52,14 @@ Default domain is [http://dev.typo3.vm]()
 Build and run an image with installed and fully functional introduction package:
 
 ```
-docker-compose -f docker-compose.yml build
-docker-compose -f docker-compose.yml -f docker-compose.demo.yml up -d
+docker-compose build
+docker-compose -f docker-compose.yml -f docker-compose.demo.yml up --build -d
 ```
 
 Use the following command to install the introduction package using TYPO3 console:
 
 ```
-docker-compose exec /bin/bash ./install.sh
+docker-compose exec webserver /bin/bash ./install.sh
 ```
 
 Default domain is [http://demo.typo3.vm]()
@@ -70,7 +71,7 @@ Default domain is [http://demo.typo3.vm]()
 
 * A GIT repository for your project
 * A `composer` based TYPO3 project
-* Using `/web` folder for all public files (speak: using the `web-dir` directive, see composer.json in `/demo` folder)
+* Using `/web` folder for all public files (using the `web-dir` directive, see composer.json in `/demo` folder)
 * Make sure your project composer file contains `helhum/typo3-console` as a dependency
 
 **How to integrate with your existing TYPO3 CMS project**
@@ -81,9 +82,9 @@ Default domain is [http://demo.typo3.vm]()
 
 ```
 cd .docker
-docker-compose -f docker-compose.yml build
+docker-compose build
 cd ..
-docker-compose -f .docker/docker-compose.yml -f .docker/docker-compose.project.yml up -d
+docker-compose -f .docker/docker-compose.yml -f .docker/docker-compose.project.yml up --build -d
 ```
 
 **This will:**
@@ -111,14 +112,14 @@ Change the used PHP version by using:
 
 ```
 docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml build
-docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml -f docker-compose.demo.yml up -d
+docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml -f docker-compose.demo.yml up --build -d
 ```
 
 
 ## Issues
 
 * Install tool -> DB compare shows issues: https://forge.typo3.org/issues/82023
- 
+
 
 ## Credits
 
