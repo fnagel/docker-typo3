@@ -7,7 +7,6 @@ COPY ./composer.lock /app
 RUN composer install --no-interaction --no-dev --no-progress --optimize-autoloader --ignore-platform-reqs
 
 ## Install webserver
-ARG php_tag
 FROM typo3.webserver:$php_tag
 
 # Copy composer dependencies

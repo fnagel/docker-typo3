@@ -3,7 +3,6 @@ ARG php_tag
 FROM composer:1 AS composer
 
 ## Install webserver
-ARG php_tag
 FROM typo3.webserver:$php_tag
 
 ## Install composer
