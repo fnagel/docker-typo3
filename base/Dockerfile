@@ -68,4 +68,20 @@ RUN sed -ri -e 's!#ServerName www.example.com!ServerName ${APACHE_DOMAIN}!g' /et
 
 RUN php --version
 
+# Create TYPO3 folder structure
+RUN mkdir /var/www/project
+RUN mkdir /var/www/project/fileadmin
+RUN mkdir /var/www/project/typo3conf
+RUN mkdir /var/www/project/typo3conf/l10n
+RUN mkdir /var/www/project/typo3temp
+RUN mkdir /var/www/project/uploads
+
+RUN mkdir /var/www/html/web
+RUN mkdir /var/www/html/web/typo3conf
+
+RUN ln -s /var/www/project/fileadmin /var/www/html/web/fileadmin
+RUN ln -s /var/www/project/typo3conf/l10n /var/www/html/web/typo3conf/l10n
+RUN ln -s /var/www/project/typo3temp /var/www/html/web/typo3temp
+RUN ln -s /var/www/project/uploads /var/www/html/web/uploads
+
 WORKDIR /var/www/html
