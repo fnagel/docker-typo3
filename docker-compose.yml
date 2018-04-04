@@ -12,10 +12,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - fileadmin:/var/www/html/web/fileadmin
-      - l10n:/var/www/html/web/typo3conf/l10n
-      - typo3temp:/var/www/html/web/typo3temp
-      - uploads:/var/www/html/web/uploads
+      - project:/var/www/project
     networks:
       - db
     depends_on:
@@ -40,11 +37,9 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
 
+# We use a single volume to make it easier to use docker hosting services
 volumes:
-  fileadmin:
-  l10n:
-  typo3temp:
-  uploads:
+  project:
 
 networks:
   db:
