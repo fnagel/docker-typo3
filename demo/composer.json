@@ -38,6 +38,9 @@
     "helhum/typo3-console": "^5.0",
     "typo3/cms-introduction": "^3.0"
   },
+  "conflict": {
+    "symfony/finder": "3.4.7|4.0.7"
+  },
   "extra": {
     "typo3/cms": {
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
