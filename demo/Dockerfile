@@ -18,4 +18,5 @@ RUN touch web/typo3conf/ENABLE_INSTALL_TOOL
 RUN cp vendor/typo3/cms/_.htaccess web/.htaccess
 COPY ./install.sh /var/www/html
 
-RUN chown -R www-data:www-data ./web
+RUN chown -R www-data:www-data /var/www/html/web
+RUN chown -R www-data:www-data /var/www/project
