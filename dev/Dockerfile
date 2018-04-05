@@ -17,6 +17,13 @@ RUN { \
 		echo 'xdebug.remote_autostart = off'; \
 	} > /usr/local/etc/php/conf.d/xdebug.ini
 
+# Add PHP.ini debug config
+RUN { \
+		echo 'display_errors = on'; \
+		echo 'log_errors = on'; \
+		echo 'error_reporting = E_ALL'; \
+	} > /usr/local/etc/php/conf.d/development.ini
+
 
 # Install NodeJS
 RUN apt-get update
