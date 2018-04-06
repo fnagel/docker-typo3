@@ -89,10 +89,18 @@ docker-compose -f .docker/docker-compose.yml -f .docker/docker-compose.project.y
 
 **This will:**
 
-* create production image with web server and database
-* install your composer dependencies
-* add your `web` and `fileadmin` files
+* Create production image with web server and database
+* Install your composer dependencies
+* Add your local `web` files
+* Copy files from `.docker/project/data`
 
+Use the following command to import your database:
+
+```
+docker-compose exec webserver gunzip < /var/www/project/data/import.sql | php /var/www/html/vendor/bin/typo3cms database:import
+```
+
+_Note:_ You will need to add your `import.sql` to `.docker/project/data`, so the file is available.
 
 ### Database credentials
 

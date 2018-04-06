@@ -14,8 +14,10 @@ COPY --from=composer /app/web ./web
 COPY --from=composer /app/vendor ./vendor
 
 # Copy project files
-COPY ./web/* /web
-COPY ./fileadmin /fileadmin
+COPY ./web/* /web/
+
+# Copy data folder
+COPY ./.docker/project/data /var/www/project/data
 
 # Prepare TYPO3
 RUN vendor/bin/typo3cms install:fixfolderstructure

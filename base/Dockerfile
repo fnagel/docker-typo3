@@ -16,8 +16,11 @@ RUN set -ex; \
         libpng-dev \
         zlib1g-dev \
 # Install required 3rd party tools
-        graphicsmagick \
+        libmagickwand-dev \
 	; \
+	\
+	pecl install imagick; \
+	docker-php-ext-enable imagick; \
 	\
 # Configure extensions
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr; \
