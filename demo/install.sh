@@ -9,4 +9,4 @@ php vendor/bin/typo3cms install:setup --force --no-interaction --skip-integrity-
 # Needed because even if this script is run as www-data the files / folders created
 # in fileadmin have root permissions
 # @todo Fix this
-chown -R www-data:www-data ./web/fileadmin
+chown -R www-data:www-data /var/www/project/fileadmin
