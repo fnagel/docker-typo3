@@ -15,8 +15,6 @@ RUN set -ex; \
         libmcrypt-dev \
         libpng-dev \
         zlib1g-dev \
-# Install required 3rd party tools
-        graphicsmagick \
 	; \
 	\
 # Configure extensions
@@ -36,6 +34,12 @@ RUN set -ex; \
 	\
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	rm -rf /var/lib/apt/lists/*
+
+# Install imagemagick
+RUN apt-get update \
+    && apt install -y --no-install-recommends libmagickwand-dev imagemagick
+RUN pecl install imagick \
+    && docker-php-ext-enable imagick
 
 # Set recommended opcode PHP.ini settings, see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
