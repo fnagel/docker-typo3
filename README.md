@@ -3,7 +3,7 @@
 
 ## What is this?
 
-Yet another TYPO3 CMS Docker package. It's simple, understandable and yet fully functional.
+Yet another TYPO3 CMS Docker package based upon PHP and Apache. It's simple, understandable and yet fully functional.
 
 _Suitable for development and production._
 
@@ -108,7 +108,7 @@ _Some of those can be changed in the `.env` file._
 
 ### Change PHP version
 
-Change the used PHP version by using:
+Change the PHP version by using:
 
 ```
 docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml build
@@ -118,7 +118,7 @@ docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml -f docker-com
 
 ## Issues
 
-* Install tool -> DB compare shows issues: https://forge.typo3.org/issues/82023
+* Fixed dependency issue with latest TYPO3 version in composer.json 
 
 
 ## Credits
@@ -128,6 +128,6 @@ Thanks to @jzaefferer (@sloppyio) for the help getting started with docker!
 **Resources**
 
 * https://github.com/sloppyio/quickstarters
-* https://github.com/docker-library/wordpress/
+* https://github.com/docker-library/wordpress
 * https://github.com/t3easy/docker-typo3
 * https://writing.pupius.co.uk/apache-and-php-on-docker-44faef716150
