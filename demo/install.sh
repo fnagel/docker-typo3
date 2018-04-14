@@ -10,3 +10,5 @@ php vendor/bin/typo3cms install:setup --force --no-interaction --skip-integrity-
 # in fileadmin have root permissions
 # @todo Fix this
 chown -R www-data:www-data /var/www/project/fileadmin
+
+chown www-data:www-data /var/www/html/web/typo3conf/LocalConfiguration.php
