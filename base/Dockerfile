@@ -19,7 +19,7 @@ RUN set -ex; \
 	\
 # Configure extensions
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr; \
-	docker-php-ext-install mysqli soap gd zip opcache; \
+	docker-php-ext-install mysqli intl soap gd zip opcache; \
 	\
 # Reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 	apt-mark auto '.*' > /dev/null; \
@@ -81,7 +81,6 @@ RUN mkdir /var/www/project/typo3conf/l10n
 RUN mkdir /var/www/project/typo3temp
 RUN mkdir /var/www/project/uploads
 
-RUN mkdir /var/www/html/var
 RUN mkdir /var/www/html/web
 RUN mkdir /var/www/html/web/typo3conf
 
