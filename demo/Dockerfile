@@ -1,22 +1,15 @@
 ARG php_tag
 
-## Install composer file
+# Install composer
 FROM composer:1 AS composer
 COPY ./composer.json /app
 RUN composer install --no-interaction --no-dev --no-progress --optimize-autoloader --ignore-platform-reqs
 
-## Install webserver
+# Install webserver
 FROM typo3.webserver:$php_tag
 
 COPY --from=composer /app/web ./web
 COPY --from=composer /app/vendor ./vendor
 
-# Prepare TYPO3
-RUN vendor/bin/typo3cms install:fixfolderstructure
-RUN touch web/FIRST_INSTALL
-RUN touch web/typo3conf/ENABLE_INSTALL_TOOL
-RUN cp vendor/typo3/cms/_.htaccess web/.htaccess
+# Add install sh file
 COPY ./install.sh /var/www/html
-
-RUN chown -R www-data:www-data /var/www/html/web
-RUN chown -R www-data:www-data /var/www/project

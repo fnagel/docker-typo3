@@ -2,10 +2,10 @@ ARG php_tag
 
 FROM composer:1 AS composer
 
-## Install webserver
+# Install webserver
 FROM typo3.webserver:$php_tag
 
-## Install composer
+# Install composer
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # Install Xdebug
@@ -37,4 +37,5 @@ RUN apt-get install -y ruby-full rubygems-integration
 # @todo v3.5 does not work, not sure why
 RUN gem install sass -v 3.4
 
+RUN chown -R www-data:www-data ./var
 RUN chown -R www-data:www-data ./web

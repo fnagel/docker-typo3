@@ -1,50 +1,43 @@
 {
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://composer.typo3.org/"
-    }
-  ],
-  "require": {
-    "typo3/cms": "^8.7",
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://composer.typo3.org/"
+		}
+	],
+	"require": {
+		"typo3/minimal": "^10.4",
 
-    "typo3/cms-belog": "^8.7",
-    "typo3/cms-beuser": "^8.7",
-    "typo3/cms-context-help": "^8.7",
-    "typo3/cms-cshmanual": "^8.7",
-    "typo3/cms-documentation": "^8.7",
-    "typo3/cms-felogin": "^8.7",
-    "typo3/cms-filemetadata": "^8.7",
-    "typo3/cms-fluid-styled-content": "^8.7",
-    "typo3/cms-form": "^8.7",
-    "typo3/cms-func": "^8.7",
-    "typo3/cms-impexp": "^8.7",
-    "typo3/cms-info": "^8.7",
-    "typo3/cms-info-pagetsconfig": "^8.7",
-    "typo3/cms-linkvalidator": "^8.7",
-    "typo3/cms-lowlevel": "^8.7",
-    "typo3/cms-reports": "^8.7",
-    "typo3/cms-rsaauth": "^8.7",
-    "typo3/cms-scheduler": "^8.7",
-    "typo3/cms-rte-ckeditor": "^8.7",
-    "typo3/cms-setup": "^8.7",
-    "typo3/cms-sys-note": "^8.7",
-    "typo3/cms-t3editor": "^8.7",
-    "typo3/cms-tstemplate": "^8.7",
-    "typo3/cms-viewpage": "^8.7",
-    "typo3/cms-wizard-crpages": "^8.7",
-    "typo3/cms-wizard-sortpages": "^8.7",
+		"typo3/cms-belog": "^10.4",
+		"typo3/cms-beuser": "^10.4",
+		"typo3/cms-context-help": "^10.4",
+		"typo3/cms-cshmanual": "^10.4",
+		"typo3/cms-felogin": "^10.4",
+		"typo3/cms-filemetadata": "^10.4",
+		"typo3/cms-fluid-styled-content": "^10.4",
+		"typo3/cms-form": "^10.4",
+		"typo3/cms-info": "^10.4",
+		"typo3/cms-info-pagetsconfig": "^10.4",
+		"typo3/cms-linkvalidator": "^10.4",
+		"typo3/cms-lowlevel": "^10.4",
+		"typo3/cms-reports": "^10.4",
+		"typo3/cms-scheduler": "^10.4",
+		"typo3/cms-setup": "^10.4",
+		"typo3/cms-t3editor": "^10.4",
+		"typo3/cms-tstemplate": "^10.4",
+		"typo3/cms-viewpage": "^10.4",
 
-    "helhum/typo3-console": "^5.0",
-    "typo3/cms-introduction": "^3.0"
-  },
-  "conflict": {
-    "symfony/finder": "3.4.7|4.0.7"
-  },
-  "extra": {
-    "typo3/cms": {
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": "web"
-    }
-  }
+		"typo3/cms-seo": "^10.4",
+		"typo3/cms-redirects": "^10.4",
+		"typo3/cms-dashboard": "^10.4",
+
+		"typo3/cms-introduction": "^4.2",
+		"helhum/typo3-console": "^6.3"
+	},
+	"extra": {
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": "web"
+		}
+	}
 }

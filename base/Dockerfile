@@ -1,6 +1,6 @@
 ARG php_tag
 
-## Extend from PHP image
+# Extend from PHP image
 FROM php:$php_tag
 
 # Install the PHP extensions we need
