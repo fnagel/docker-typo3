@@ -19,7 +19,7 @@ RUN set -ex; \
 	\
 # Configure extensions
 	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr; \
-	docker-php-ext-install mysqli intl soap gd zip opcache; \
+	docker-php-ext-install mysqli intl soap gd exif zip opcache; \
 	\
 # Reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 	apt-mark auto '.*' > /dev/null; \
