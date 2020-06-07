@@ -3,6 +3,7 @@ version: '3'
 services:
   webserver:
     image: typo3.webserver.dev.${APACHE_DOMAIN}
+    container_name: '${COMPOSE_PROJECT_NAME}-dev-webserver'
     build:
       context: ./dev
     domainname: dev.${APACHE_DOMAIN}
@@ -12,8 +13,12 @@ services:
     networks:
       - mailhog
 
+  db:
+    container_name: '${COMPOSE_PROJECT_NAME}-dev-db'
+
   adminer:
     image: adminer
+    container_name: '${COMPOSE_PROJECT_NAME}-dev-adminer'
     ports:
       - 8080:8080
     networks:
@@ -21,6 +26,7 @@ services:
 
   mailhog:
     image: mailhog/mailhog
+    container_name: '${COMPOSE_PROJECT_NAME}-dev-mailhog'
     ports:
       - 1025:1025
       - 8025:8025

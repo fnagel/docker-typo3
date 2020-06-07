@@ -15,6 +15,8 @@ RUN set -ex; \
         libmcrypt-dev \
         libpng-dev \
         zlib1g-dev \
+        zip \
+        unzip \
 	; \
 	\
 # Configure extensions

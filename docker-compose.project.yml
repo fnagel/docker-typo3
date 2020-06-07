@@ -3,6 +3,7 @@ version: '3'
 services:
   webserver:
     image: typo3.webserver.${APACHE_DOMAIN}
+    container_name: '${COMPOSE_PROJECT_NAME}-webserver'
     build:
       context: ../
       dockerfile: ./.docker/project/Dockerfile
@@ -10,3 +11,6 @@ services:
     environment:
       - TYPO3_CONTEXT=${TYPO3_CONTEXT}
       - APACHE_DOMAIN=${APACHE_DOMAIN}
+
+  db:
+    container_name: '${COMPOSE_PROJECT_NAME}-db'

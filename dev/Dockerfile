@@ -37,5 +37,5 @@ RUN apt-get install -y ruby-full rubygems-integration
 # @todo v3.5 does not work, not sure why
 RUN gem install sass -v 3.4
 
-RUN chown -R www-data:www-data ./var
-RUN chown -R www-data:www-data ./web
+# Copy meta data files
+COPY ./*.* ./

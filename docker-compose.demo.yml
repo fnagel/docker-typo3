@@ -3,6 +3,7 @@ version: '3'
 services:
   webserver:
     image: typo3.webserver.demo.${APACHE_DOMAIN}
+    container_name: '${COMPOSE_PROJECT_NAME}-demo-webserver'
     build:
       context: ./demo
     domainname: demo.${APACHE_DOMAIN}
@@ -14,3 +15,6 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - TYPO3_USER=${TYPO3_USER}
       - TYPO3_PASSWORD=${TYPO3_PASSWORD}
+
+  db:
+    container_name: '${COMPOSE_PROJECT_NAME}-demo-db'

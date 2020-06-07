@@ -13,3 +13,6 @@ nbproject
 .TemporaryItems
 .webprj
 .php_cs.cache
+
+project/data/*.sql
+project/data/*.gz
