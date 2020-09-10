@@ -10,18 +10,27 @@ RUN set -ex; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-        libxml2-dev libfreetype6-dev \
-        libjpeg62-turbo-dev \
+        libxml2-dev \
+        libfreetype6-dev \
         libmcrypt-dev \
+        libjpeg-dev \
+        libmagickwand-dev \
         libpng-dev \
-        zlib1g-dev \
-        zip \
-        unzip \
-	; \
+    ; \
 	\
 # Configure extensions
-	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr; \
-	docker-php-ext-install mysqli intl soap gd exif zip opcache; \
+    docker-php-ext-configure gd --with-freetype-dir=/usr --with-jpeg-dir=/usr --with-png-dir=/usr; \
+	docker-php-ext-install -j "$(nproc)" \
+		bcmath \
+		exif \
+		gd \
+		mysqli \
+		intl \
+		soap \
+		opcache \
+    ; \
+    pecl install imagick; \
+    docker-php-ext-enable imagick; \
 	\
 # Reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 	apt-mark auto '.*' > /dev/null; \
@@ -37,11 +46,13 @@ RUN set -ex; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	rm -rf /var/lib/apt/lists/*
 
-# Install imagemagick
-RUN apt-get update \
-    && apt install -y --no-install-recommends libmagickwand-dev imagemagick
-RUN pecl install imagick \
-    && docker-php-ext-enable imagick
+# Install zip / unzip
+RUN apt-get update; \
+    apt-get install -y \
+        libzip-dev \
+        zip \
+  && docker-php-ext-configure zip --with-libzip \
+  && docker-php-ext-install zip
 
 # Set recommended opcode PHP.ini settings, see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
