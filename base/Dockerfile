@@ -57,6 +57,10 @@ RUN apt-get update \
 RUN pecl install imagick \
     && docker-php-ext-enable imagick
 
+# Install localization
+RUN apt-get update \
+    && apt-get install -y locales locales-all
+
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
