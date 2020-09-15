@@ -14,7 +14,6 @@ RUN set -ex; \
         libfreetype6-dev \
         libmcrypt-dev \
         libjpeg-dev \
-        libmagickwand-dev \
         libpng-dev \
     ; \
 	\
@@ -29,8 +28,6 @@ RUN set -ex; \
 		soap \
 		opcache \
     ; \
-    pecl install imagick; \
-    docker-php-ext-enable imagick; \
 	\
 # Reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 	apt-mark auto '.*' > /dev/null; \
@@ -53,6 +50,12 @@ RUN apt-get update; \
         zip \
   && docker-php-ext-configure zip --with-libzip \
   && docker-php-ext-install zip
+
+# Install imagemagick
+RUN apt-get update \
+    && apt install -y --no-install-recommends libmagickwand-dev imagemagick
+RUN pecl install imagick \
+    && docker-php-ext-enable imagick
 
 # Set recommended opcode PHP.ini settings, see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
