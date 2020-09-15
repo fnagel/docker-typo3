@@ -5,6 +5,9 @@ FROM composer:1 AS composer
 # Install webserver
 FROM typo3.webserver:$php_tag
 
+# @todo Remove this!
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
 # Install and prepare composer
 # Include composer as coyping files from composer image will break the symlink structure due to composer scripts
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -18,6 +21,7 @@ COPY ./web/uploads ./web/uploads
 COPY ./web/*.* ./web/
 
 RUN chown -R www-data:www-data /var/www/project
+RUN chown -R www-data:www-data /var/www/html/config
 RUN chown -R www-data:www-data /var/www/html/var
 RUN chown -R www-data:www-data /var/www/html/web
 

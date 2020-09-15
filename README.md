@@ -46,7 +46,7 @@ docker-compose build
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 ```
 
-Default domain is [http://dev.typo3.vm]()
+Default domain is [http://dev.typo3.local]()
 
 
 ### Demo (Introduction Package)
@@ -64,7 +64,7 @@ Use the following command to install the introduction package using TYPO3 consol
 docker-compose exec webserver /bin/bash ./install.sh
 ```
 
-Default domain is [http://demo.typo3.vm]()
+Default domain is [http://demo.typo3.local]()
 
 
 ### Use with existing projects
@@ -95,18 +95,20 @@ docker-compose -f .docker/docker-compose.yml -f .docker/docker-compose.project.y
 * Install your composer dependencies
 * Add your local `web` files
 
+**Copy files:**
+
 Use the following command to import more static files (`web/fileadmin` and `web/uploads` are already added!) to the volume:
 
 ```
-docker cp ./web/folder docker_webserver_1:/var/www/project/
+docker cp ./web/folder webserver:/var/www/project/
 ```
+
+**Import database:**
 
 Use the following command to import your database:
 
 ```
-cd .docker
-docker cp .docker/project/data docker_webserver_1:/var/www/project/
-docker-compose run webserver bash -c "gunzip < /var/www/project/data/db.sql.gz | php /var/www/html/web/vendor/bin/typo3cms database:import"
+docker-compose run db bash -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -h db $MYSQL_DATABASE' < .docker/project/data/db.sql
 ```
 
 
@@ -155,7 +157,15 @@ docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml -f docker-com
 
 * Demo file works
 * Project does not work
+    * Tried with IP, might be a breaker -> did not work, removed
+    * Issues with missing typo3 site config files -> fixed
+    * Testing around with project name env var -> reverted
+    * Issues with imagemagick not available -> rebuild everything
 * Dev image not tested for a longer time
+
+* Create copy of project (and rename to copy) and add volume sync instead of COPY command
+* Add arg tag for image, in order to be able to use a dev image for projects
+* Add SSL
 
 ## Credits
 
