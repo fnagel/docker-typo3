@@ -105,11 +105,11 @@ RUN mkdir /var/www/project/typo3conf/l10n
 RUN mkdir /var/www/project/typo3temp
 RUN mkdir /var/www/project/uploads
 
+RUN mkdir /var/www/html/config
 RUN mkdir /var/www/html/web
 RUN mkdir /var/www/html/web/typo3conf
 
 RUN ln -s /var/www/project/var /var/www/html/var
-RUN ln -s /var/www/project/config /var/www/html/config
 RUN ln -s /var/www/project/fileadmin /var/www/html/web/fileadmin
 RUN ln -s /var/www/project/typo3conf/l10n /var/www/html/web/typo3conf/l10n
 RUN ln -s /var/www/project/typo3temp /var/www/html/web/typo3temp
