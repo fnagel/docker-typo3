@@ -57,6 +57,9 @@ RUN apt-get update \
 RUN pecl install imagick \
     && docker-php-ext-enable imagick
 
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 # Set recommended opcode PHP.ini settings, see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
 		echo 'opcache.memory_consumption=128'; \
