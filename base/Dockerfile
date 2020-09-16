@@ -1,7 +1,8 @@
 ARG php_tag
+ARG docker_image
 
-# Extend from PHP image
-FROM php:$php_tag
+# Install webserver
+FROM ${docker_image}:${php_tag}-apache
 
 # Install the PHP extensions we need
 RUN set -ex; \

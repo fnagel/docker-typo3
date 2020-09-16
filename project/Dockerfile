@@ -1,12 +1,10 @@
 ARG php_tag
+ARG docker_image
 
 FROM composer:1 AS composer
 
 # Install webserver
-FROM typo3.webserver:$php_tag
-
-# @todo Remove this!
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+FROM ${docker_image}:${php_tag}
 
 # Install and prepare composer
 # Include composer as coyping files from composer image will break the symlink structure due to composer scripts

@@ -2,10 +2,13 @@ version: '3'
 
 services:
   webserver:
-    image: typo3.webserver.demo.${APACHE_DOMAIN}
+    image: ${DOCKER_BASE_IMAGE}-demo:${DOCKER_PHP_TAG}
     container_name: '${COMPOSE_PROJECT_NAME}-demo-webserver'
     build:
       context: ./demo
+      args:
+        php_tag: ${DOCKER_PHP_TAG}
+        docker_image: ${DOCKER_BASE_IMAGE}
     domainname: demo.${APACHE_DOMAIN}
     environment:
       - TYPO3_CONTEXT=${TYPO3_CONTEXT}
