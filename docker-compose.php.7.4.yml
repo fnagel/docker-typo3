@@ -1,8 +1,0 @@
-version: '3'
-
-services:
-  webserver:
-    image: typo3.webserver:7.4-apache
-    build:
-      args:
-        php_tag: "7.4-apache"
