@@ -33,6 +33,10 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private
 RUN a2enmod ssl
 RUN a2ensite default-ssl
 
+# Install GIT
+RUN apt-get update \
+    && apt-get install -y git
+
 # Install NodeJS
 RUN apt-get update
 RUN apt-get install -y gnupg
