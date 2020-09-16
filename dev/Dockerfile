@@ -27,6 +27,12 @@ RUN { \
 		echo 'error_reporting = E_ALL'; \
 	} > /usr/local/etc/php/conf.d/development.ini
 
+# Create SSL certificate
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem -subj '/C=DE/ST=Berlin/L=Berlin/O=Security/OU=Development/CN=${APACHE_DOMAIN}'
+# Configure Apache as needed
+RUN a2enmod ssl
+RUN a2ensite default-ssl
+
 # Install NodeJS
 RUN apt-get update
 RUN apt-get install -y gnupg
