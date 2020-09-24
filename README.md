@@ -24,39 +24,55 @@ _Suitable for development and production._
 
 ## Usage
 
-_Note:_ We need to build the base image first so the dev and demo image can extend (`FROM`) it.
+* Adjust `.env` file
+* Create base image(s)
+* Create demo or project imags
 
 
-### Production
+### Base images
+
+Base images for running TYPO3 CMS. Needed as base images for demo and project images.
+
+
+#### Production
 
 Build and run a minimal production / base image:
 
 ```
 docker-compose build
 ```
-This will create the `typo3.webserver` image.
+
+This will create the `fnagel/docker-typo3-webserver` image.
 
 
-### Development
+#### Development
 
-Build and run an image with development tools (composer, xdebug, etc.):
+Build an image with development tools (composer, xdebug, etc.):
 
 ```
-docker-compose build
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml build
 ```
 
-Default domain is [http://dev.typo3.local]()
+This will create the `fnagel/docker-typo3-webserver-dev` image.
 
 
-### Demo (Introduction Package)
+#### Demo (Introduction Package)
+
+**Create images**
 
 Build and run an image with installed and fully functional introduction package:
 
 ```
-docker-compose build
 docker-compose -f docker-compose.yml -f docker-compose.demo.yml up --build -d
 ```
+
+or with development tools:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.demo.yml up --build -d
+```
+
+**Setup demo**
 
 Use the following command to install the introduction package using TYPO3 console:
 
@@ -74,7 +90,6 @@ Default domain is [http://demo.typo3.local]()
 * A GIT repository for your project
 * A `composer` based TYPO3 project
 * Using `/web` folder for all public files (using the `web-dir` directive, see composer.json in `/demo` folder)
-* Make sure your project composer file contains `helhum/typo3-console` as a dependency
 
 **How to integrate with your existing TYPO3 CMS project**
 
@@ -83,9 +98,6 @@ Default domain is [http://demo.typo3.local]()
 * Run the following commands:
 
 ```
-cd .docker
-docker-compose build
-cd ..
 docker-compose -f .docker/docker-compose.yml -f .docker/docker-compose.project.yml up --build -d
 ```
 
@@ -114,24 +126,12 @@ docker-compose run db bash -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -h db $MYSQ
 
 ### Database credentials
 
-Default values for the database connection are:
-
-User: `dbname`
-Pass: `dbpass`
-Host: `db`
-Port: `3306`
-
-_Some of those can be changed in the `.env` file._
+Default values for the database connection see `MYSQL_*` variables in the `.env` file.
 
 
 ### Change PHP version
 
-Change the PHP version by using:
-
-```
-docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml build
-docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml -f docker-compose.demo.yml up --build -d
-```
+Change the `DOCKER_PHP_TAG` variable in the `.env` file.
 
 
 ## Issues
@@ -141,45 +141,29 @@ docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml -f docker-com
 
 ## Ideas
 
-* Move all PHP version docker files to own folder
-
+* Sync folder (see `sync` branch)
 
 ## Hints
 
-* You might need to run `@FOR /f "tokens=*" %i IN ('docker-machine env') DO @%i` on Windows
-* Increase disk size for "Docker Toolbox for Windows" installations: 
-    `docker-machine rm default` and 
-    `docker-machine create -d virtualbox --virtualbox-disk-size "100000" default`
-    This creates a 100 GB disk but erases all exiting data!
+* "Docker Toolbox for Windows"
+    * You might need to run `@FOR /f "tokens=*" %i IN ('docker-machine env') DO @%i` on Windows
+    * Increase disk size: 
+        `docker-machine rm default` and 
+        `docker-machine create -d virtualbox --virtualbox-disk-size "100000" default`
+        This creates a 100 GB disk but erases all exiting data!
 
 
 ## ToDo
 
 * Demo file works
-* Project does not work -> fixed
-    * Tried with IP, might be a breaker -> did not work, removed
-    * Issues with missing typo3 site config files -> fixed
-    * Testing around with project name env var -> reverted
-    * Issues with imagemagick not available -> fixed
-    * BE login not possible (but install tool) -> fixed
-* Dev image not tested for a longer time -> done
-* Add SSL -> done
+* Project file works
+* Dev file works
 
-* Add arg tag for image, in order to be able to use a dev image for projects
-    * Works, test from scratch with project (dev) and demo (base)
-    * Update readme
+* Add arg tag for image, in order to be able to use a dev image for projects -> works
     
-* Add ftp
-    * Upload not possible -> works (IDE issue)
-    * Try with more folders, see if symlinks work then
+* Add ftp -> works
 
-* Create copy of project (and rename to copy) and add volume sync instead of COPY command
-    * Seems not possible due to project / html symlinks in base image
-    * try again as really needed
-    
 * Clean up GIT history
-
-* https://github.com/t3easy/docker-typo3/blob/master/.docker/.dockerignore
 
 ## Credits
 
