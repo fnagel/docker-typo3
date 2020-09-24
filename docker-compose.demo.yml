@@ -3,7 +3,7 @@ version: '3'
 services:
   webserver:
     image: ${DOCKER_BASE_IMAGE}-demo:${DOCKER_PHP_TAG}
-    container_name: '${COMPOSE_PROJECT_NAME}-demo-webserver'
+    container_name: '${COMPOSE_PROJECT_NAME}-webserver'
     build:
       context: ./demo
       args:

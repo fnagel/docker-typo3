@@ -3,7 +3,7 @@ version: '3'
 services:
   webserver:
     image: fnagel/docker-typo3-webserver-dev:${DOCKER_PHP_TAG}
-    container_name: '${COMPOSE_PROJECT_NAME}-dev-webserver'
+    container_name: '${COMPOSE_PROJECT_NAME}-webserver'
     build:
       context: ./dev
       args:
@@ -15,11 +15,11 @@ services:
       - mailhog
 
   db:
-    container_name: '${COMPOSE_PROJECT_NAME}-dev-db'
+    container_name: '${COMPOSE_PROJECT_NAME}-db'
 
   adminer:
     image: adminer
-    container_name: '${COMPOSE_PROJECT_NAME}-dev-adminer'
+    container_name: '${COMPOSE_PROJECT_NAME}-adminer'
     ports:
       - 8080:8080
     networks:
@@ -27,7 +27,7 @@ services:
 
   mailhog:
     image: mailhog/mailhog
-    container_name: '${COMPOSE_PROJECT_NAME}-dev-mailhog'
+    container_name: '${COMPOSE_PROJECT_NAME}-mailhog'
     ports:
       - 1025:1025
       - 8025:8025
