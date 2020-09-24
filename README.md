@@ -11,7 +11,6 @@ _Suitable for development and production._
 **What is included?**
 
 * A minimal production image
-* A TYPO3 CMS "Introduction package" image
 * A development image with
     * Xdebug
     * Mailhog
@@ -19,6 +18,7 @@ _Suitable for development and production._
     * Node.js (with npm)
     * Ruby
     * SASS
+* A TYPO3 CMS "Introduction package" image
 * A simple way to create an image for your custom project
 
 
@@ -156,16 +156,30 @@ docker-compose -f docker-compose.yml -f docker-compose.php.7.0.yml -f docker-com
 ## ToDo
 
 * Demo file works
-* Project does not work
+* Project does not work -> fixed
     * Tried with IP, might be a breaker -> did not work, removed
     * Issues with missing typo3 site config files -> fixed
     * Testing around with project name env var -> reverted
-    * Issues with imagemagick not available -> rebuild everything
-* Dev image not tested for a longer time
+    * Issues with imagemagick not available -> fixed
+    * BE login not possible (but install tool) -> fixed
+* Dev image not tested for a longer time -> done
+* Add SSL -> done
+
+* Add arg tag for image, in order to be able to use a dev image for projects
+    * Works, test from scratch with project (dev) and demo (base)
+    * Update readme
+    
+* Add ftp
+    * Upload not possible -> works (IDE issue)
+    * Try with more folders, see if symlinks work then
 
 * Create copy of project (and rename to copy) and add volume sync instead of COPY command
-* Add arg tag for image, in order to be able to use a dev image for projects
-* Add SSL
+    * Seems not possible due to project / html symlinks in base image
+    * try again as really needed
+    
+* Clean up GIT history
+
+* https://github.com/t3easy/docker-typo3/blob/master/.docker/.dockerignore
 
 ## Credits
 
