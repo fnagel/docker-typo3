@@ -98,13 +98,12 @@ RUN php --version
 
 # Create TYPO3 folder structure
 RUN mkdir /var/www/project
-RUN mkdir /var/www/project/var
-RUN mkdir /var/www/project/config
 RUN mkdir /var/www/project/fileadmin
 RUN mkdir /var/www/project/typo3conf
 RUN mkdir /var/www/project/typo3conf/l10n
 RUN mkdir /var/www/project/typo3temp
 RUN mkdir /var/www/project/uploads
+RUN mkdir /var/www/project/var
 
 RUN mkdir /var/www/html/config
 RUN mkdir /var/www/html/web
