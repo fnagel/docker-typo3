@@ -12,6 +12,10 @@ RUN rm -rf /var/www/web/typo3conf/l10n
 RUN rm -rf /var/www/web/fileadmin
 RUN rm -rf /var/www/web/uploads
 RUN rm -rf /var/www/var
+# Remove dependencies
+RUN rm -rf /var/www/web/typo3
+RUN rm -rf /var/www/vendor
+RUN rm -rf /var/www/node_modules
 
 # Build actual webserver
 FROM ${docker_image}:${php_tag}

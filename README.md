@@ -16,8 +16,6 @@ _Suitable for development and production._
     * Mailhog
     * Adminer
     * Node.js (with npm)
-    * Ruby
-    * SASS
 * A TYPO3 CMS "Introduction package" image
 * A simple way to create an image for your custom project
 
@@ -26,12 +24,12 @@ _Suitable for development and production._
 
 * Adjust `.env` file
 * Create base image(s)
-* Create demo or project imags
+* Create demo or project container
 
 
 ### Base images
 
-Base images for running TYPO3 CMS. Needed as base images for demo and project images.
+Base images for running TYPO3 CMS. Needed as base images for demo and project container.
 
 
 #### Production
@@ -47,7 +45,7 @@ This will create the `fnagel/docker-typo3-webserver` image.
 
 #### Development
 
-Build an image with development tools (composer, xdebug, etc.):
+Build a container with development tools (composer, xdebug, etc.):
 
 ```
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml build
@@ -56,11 +54,11 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml build
 This will create the `fnagel/docker-typo3-webserver-dev` image.
 
 
-#### Demo (Introduction Package)
+### Demo (Introduction Package)
 
 **Create images**
 
-Build and run an image with installed and fully functional introduction package:
+Build and run a container with installed and fully functional introduction package:
 
 ```
 docker-compose -f docker-compose.yml -f docker-compose.demo.yml up --build -d
@@ -146,7 +144,7 @@ Change the `DOCKER_PHP_TAG` variable in the `.env` file.
 
 ## ToDo
 
-* Sync folder (see `sync` branch)
+* Sync folder (see `sync` and `remove-symlinks` branch)
 
 
 ## Credits
