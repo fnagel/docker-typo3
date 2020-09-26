@@ -104,15 +104,15 @@ docker-compose -f .docker/docker-compose.yml -f .docker/docker-compose.project.y
 **This will:**
 
 * Create production image with web server and database
+* Copy your local files into the container
 * Install your composer dependencies
-* Add your local `web` files
 
 **Copy files:**
 
-Use the following command to import more static files (`web/fileadmin` and `web/uploads` are already added!) to the volume:
+Use the following command to import more static files to the volume:
 
 ```
-docker cp ./web/folder webserver:/var/www/project/
+docker cp ./web/folder webserver:/var/www/html/
 ```
 
 **Import database:**
@@ -134,15 +134,6 @@ Default values for the database connection see `MYSQL_*` variables in the `.env`
 Change the `DOCKER_PHP_TAG` variable in the `.env` file.
 
 
-## Issues
-
-* Update SASS version (see `/dev/Dockerfile`)
-
-
-## Ideas
-
-* Sync folder (see `sync` branch)
-
 ## Hints
 
 * "Docker Toolbox for Windows"
@@ -155,15 +146,8 @@ Change the `DOCKER_PHP_TAG` variable in the `.env` file.
 
 ## ToDo
 
-* Demo file works
-* Project file works
-* Dev file works
+* Sync folder (see `sync` branch)
 
-* Add arg tag for image, in order to be able to use a dev image for projects -> works
-    
-* Add ftp -> works
-
-* Clean up GIT history
 
 ## Credits
 
