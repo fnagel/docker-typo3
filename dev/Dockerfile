@@ -38,14 +38,8 @@ RUN apt-get update \
     && apt-get install -y git
 
 # Install NodeJS
-RUN apt-get update
-RUN apt-get install -y gnupg
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get install -y nodejs
+RUN apt-get update \
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs
 
-# Install Ruby
-RUN apt-get install -y ruby-full rubygems-integration
-
-# Install SASS
-# @todo v3.5 does not work, not sure why
-RUN gem install sass -v 3.4
+RUN nodejs -v && npm -v
