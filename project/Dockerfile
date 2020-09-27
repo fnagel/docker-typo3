@@ -39,4 +39,3 @@ RUN chown -R www-data:www-data /var/www/html/web
 USER www-data
 RUN COMPOSER_CACHE_DIR=/dev/null composer install --no-interaction --no-dev --no-progress --optimize-autoloader --prefer-dist
 USER root
-

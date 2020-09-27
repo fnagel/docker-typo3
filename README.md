@@ -140,6 +140,8 @@ Change the `DOCKER_PHP_TAG` variable in the `.env` file.
         `docker-machine rm default` and 
         `docker-machine create -d virtualbox --virtualbox-disk-size "100000" default`
         This creates a 100 GB disk but erases all exiting data!
+* Clean up unused images: `docker image prune -a`
+* Clean up unused images and volumes: `docker-compose down --rmi local -v`
 
 
 ## ToDo
