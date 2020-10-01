@@ -1,11 +1,6 @@
 version: '3'
 
 services:
-  webserver:
-    # Add base volume for FTP
-    volumes:
-      - html:/var/www/html
-
   # FTP access to container
   ftp:
     image: stilliard/pure-ftpd
@@ -15,17 +10,13 @@ services:
       PUBLICHOST: "localhost"
       FTP_USER_NAME: "www-data"
       FTP_USER_PASS: "ftp"
-      FTP_USER_HOME: "/var/www"
+      FTP_USER_HOME: "/var/www/html"
       FTP_USER_UID: 33
       FTP_USER_GID: 33
     volumes:
-      - project:/var/www/project
       - html:/var/www/html
     ports:
       - "21:21"
       - "30000-30009:30000-30009"
     depends_on:
       - webserver
-
-volumes:
-  html:

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-chown -R www-data:www-data /var/www/project
+chown -R www-data:www-data /var/www/html
 
 touch web/FIRST_INSTALL
 touch web/typo3conf/ENABLE_INSTALL_TOOL

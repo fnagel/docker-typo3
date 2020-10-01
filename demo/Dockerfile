@@ -12,7 +12,6 @@ FROM ${docker_image}:${php_tag}
 COPY --from=composer /app/web ./web
 COPY --from=composer /app/vendor ./vendor
 
-RUN chown -R www-data:www-data /var/www/project
 RUN chown -R www-data:www-data /var/www/html
 
 # Add install sh file

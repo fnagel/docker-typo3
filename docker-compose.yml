@@ -13,7 +13,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - project:/var/www/project
+      - html:/var/www/html
     networks:
       - db
     depends_on:
@@ -39,9 +39,8 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
 
-# We use a single volume to make it easier to use docker hosting services
 volumes:
-  project:
+  html:
 
 networks:
   db:
