@@ -5,7 +5,7 @@ services:
     image: fnagel/docker-typo3-webserver:${DOCKER_PHP_TAG}
     container_name: '${COMPOSE_PROJECT_NAME}-webserver'
     build:
-      context: ./base
+      context: './base/${DOCKER_PHP_TAG}'
       args:
         php_tag: ${DOCKER_PHP_TAG}
         docker_image: "php"
