@@ -5,7 +5,6 @@ services:
   ftp:
     image: stilliard/pure-ftpd
     container_name: '${COMPOSE_PROJECT_NAME}-ftp'
-    restart: always
     environment:
       PUBLICHOST: "localhost"
       FTP_USER_NAME: "www-data"
