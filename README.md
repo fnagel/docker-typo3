@@ -140,14 +140,32 @@ Change the `DOCKER_PHP_TAG` variable in the `.env` file.
         `docker-machine rm default` and 
         `docker-machine create -d virtualbox --virtualbox-disk-size "100000" default`
         This creates a 100 GB disk but erases all exiting data!
-* Clean up unused images: `docker image prune -a`
-* Clean up unused images and volumes: `docker-compose down --rmi local -v`
+		
+* "Docker for Windows WSL"
+	* Move data file: https://stackoverflow.com/a/63752264/991681
+
+* Clean up on down (unused images and volumes): `docker-compose down --rmi local -v`
+        
+* Clean up radical: `docker image prune -a`
+
 
 
 ## ToDo
 
-* Sync folder (see `sync` and `remove-symlinks` branch)
+* Create Folders or Tags for PHP versions (as base Docker file needs different commands for PHP versions)
+    * Need to use compose yaml files again as we don't want duplicate Dockerfiles for similar PHP version
+    * Need ENV variables for tagging of base and dev images with PHP version
+    * Maybe an mix of ENV vars and compose yaml file additions for base / dev and other images
+    * Ideas for solution
+        * Use compose yaml files for changing the base build context into different folders
+            * Works only if we need to change the base image only
+        * ! Add compose yaml files for each PHP version to base and dev folder
+            * Create base/7.2 and base/7.4 dockerfiles
+            * Control build args and image "name" as well as build context (for PHP version) with this file
+            * Remove PHP tag from project and demo yaml files
+            * Remove php version tag from env file
 
+* Sync folder (shared volumes) see `sync` and `remove-symlinks` branch -> obsolete due to bad performance
 
 ## Credits
 
