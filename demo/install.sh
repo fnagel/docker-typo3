@@ -1,7 +1,5 @@
 #!/bin/bash
 
-chown -R www-data:www-data /var/www/html
-
 touch web/FIRST_INSTALL
 touch web/typo3conf/ENABLE_INSTALL_TOOL
 
@@ -14,6 +12,9 @@ php vendor/bin/typo3cms install:setup --force --no-interaction --skip-integrity-
     --site-setup-type="site" --site-base-url="http://$APACHE_DOMAIN" \
     --web-server-config="apache"
 
-# Reuse site configuration created by typo3 console for site tree created by introduction package
-sed -ri -e 's!rootPageId: 1!rootPageId: 2!g' /var/www/html/config/sites/main/config.yaml
+# Remove duplicate site configuration
+rm -rf /var/www/html/config/sites/main
+
 php vendor/bin/typo3cms cache:flush
+
+chown -R www-data:www-data /var/www/html

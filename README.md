@@ -76,7 +76,7 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose
 Use the following command to install the introduction package using TYPO3 console:
 
 ```
-docker-compose exec webserver /bin/bash ./install.sh
+docker-compose exec webserver bash ./install.sh
 ```
 
 Default domain is [http://demo.typo3.local]()
