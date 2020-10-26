@@ -24,7 +24,7 @@ services:
       - APACHE_DOCUMENT_ROOT=/var/www/html/web
 
   db:
-    image: mariadb:10.4
+    image: mariadb:${DOCKER_MARIADB_TAG}
     container_name: '${COMPOSE_PROJECT_NAME}-db'
     command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
