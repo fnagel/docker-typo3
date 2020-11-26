@@ -9,7 +9,7 @@ php vendor/bin/typo3cms install:setup --force --no-interaction --skip-integrity-
     --database-user-name="$MYSQL_USER" --database-user-password="$MYSQL_PASSWORD" \
     --admin-user-name="$TYPO3_USER" --admin-password="$TYPO3_PASSWORD" \
     --site-name="TYPO3 Introduction Package" \
-    --site-setup-type="site" --site-base-url="http://$APACHE_DOMAIN" \
+    --site-setup-type="site" \
     --web-server-config="apache"
 
 # Remove duplicate site configuration
