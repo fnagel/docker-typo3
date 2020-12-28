@@ -37,6 +37,10 @@ RUN a2ensite default-ssl
 RUN apt-get update \
     && apt-get install -y git
 
+# Install vim
+RUN apt-get update \
+    && apt-get install -y vim
+
 # Install NodeJS
 RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
