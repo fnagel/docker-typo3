@@ -16,7 +16,7 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN { \
 		echo 'xdebug.max_nesting_level = 400'; \
-		echo 'xdebug.remote_enable = 1'; \
+		echo 'xdebug.mode = debug'; \
 		echo 'xdebug.remote_autostart = off'; \
 	} > /usr/local/etc/php/conf.d/xdebug.ini
 
