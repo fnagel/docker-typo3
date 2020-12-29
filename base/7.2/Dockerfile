@@ -94,7 +94,8 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # Make domain available in apache
 RUN sed -ri -e 's!#ServerName www.example.com!ServerName ${APACHE_DOMAIN}!g' /etc/apache2/sites-available/*.conf
 
-RUN mkdir -p /var/www/html/web
+ARG apache_document_root
+RUN mkdir -p $apache_document_root
 
 RUN chown -R www-data:www-data /var/www/
 

@@ -9,6 +9,7 @@ services:
       args:
         php_tag: ${DOCKER_PHP_TAG}
         docker_image: "php"
+        apache_document_root: ${APACHE_DOCUMENT_ROOT}
     ports:
       - "80:80"
       - "443:443"
@@ -21,7 +22,7 @@ services:
     environment:
       - TYPO3_CONTEXT=${TYPO3_CONTEXT}
       - APACHE_DOMAIN=${APACHE_DOMAIN}
-      - APACHE_DOCUMENT_ROOT=/var/www/html/web
+      - APACHE_DOCUMENT_ROOT=${APACHE_DOCUMENT_ROOT}
 
   db:
     image: mariadb:${DOCKER_MARIADB_TAG}
