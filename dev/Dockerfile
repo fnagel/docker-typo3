@@ -41,6 +41,10 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y vim
 
+# Install rsync
+RUN apt-get update \
+    && apt-get install -y rsync
+
 # Install NodeJS
 RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
