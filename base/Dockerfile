@@ -4,54 +4,15 @@ ARG docker_image
 # Install webserver
 FROM ${docker_image}:${php_tag}-apache
 
-# Install the PHP extensions we need
-RUN set -ex; \
-	\
-	savedAptMark="$(apt-mark showmanual)"; \
-	\
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-        libxml2-dev \
-        libfreetype6-dev \
-        libmcrypt-dev \
-        libjpeg-dev \
-        libpng-dev \
-        libzip-dev \
-    ; \
-	\
-# Configure extensions
-	docker-php-ext-configure gd --with-jpeg --with-freetype; \
-	docker-php-ext-install -j "$(nproc)" \
-		bcmath \
-		exif \
-		gd \
-		mysqli \
-		intl \
-		soap \
-		opcache \
-    ; \
-	\
-# Reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
-	apt-mark auto '.*' > /dev/null; \
-	apt-mark manual $savedAptMark; \
-	ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
-		| awk '/=>/ { print $3 }' \
-		| sort -u \
-		| xargs -r dpkg-query -S \
-		| cut -d: -f1 \
-		| sort -u \
-		| xargs -rt apt-mark manual; \
-	\
-	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-	rm -rf /var/lib/apt/lists/*
+# Install PHP extensions
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && sync
 
-# Install zip / unzip
+RUN install-php-extensions bcmath zip exif gd mysqli intl soap opcache
+
+# Install unzip
 RUN apt-get update \
-    && apt-get install -y \
-        libzip-dev \
-        zip \
-    && docker-php-ext-configure zip \
-    && docker-php-ext-install zip
+    && apt-get install -y unzip
 
 # Install imagemagick
 RUN apt-get update \

@@ -13,7 +13,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 # Install Xdebug
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN install-php-extensions xdebug
 RUN { \
 		echo 'xdebug.max_nesting_level = 400'; \
 		echo 'xdebug.mode = debug'; \
