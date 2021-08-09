@@ -46,6 +46,11 @@ RUN { \
 		echo 'post_max_size = 32M'; \
 	} > /usr/local/etc/php/conf.d/typo3.ini
 
+# Set some more PHP settings
+RUN { \
+		echo 'date.timezone = ${DOCKER_TIMEZONE}'; \
+	} > /usr/local/etc/php/conf.d/custom.ini
+
 # Configure Apache as needed
 RUN a2enmod rewrite expires
 
