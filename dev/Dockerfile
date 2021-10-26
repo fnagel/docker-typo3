@@ -47,7 +47,7 @@ RUN apt-get update \
 
 # Install NodeJS
 RUN apt-get update \
-    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs
 
-RUN nodejs -v && npm -v
+RUN node -v && npm -v
