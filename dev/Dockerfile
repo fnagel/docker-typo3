@@ -1,7 +1,8 @@
 ARG php_tag
+ARG composer_tag
 ARG docker_image
 
-FROM composer:1 AS composer
+FROM composer:${composer_tag} AS composer
 
 # Install webserver
 FROM ${docker_image}:${php_tag}

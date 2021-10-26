@@ -8,6 +8,7 @@ services:
       context: ./demo
       args:
         php_tag: ${DOCKER_PHP_TAG}
+        composer_tag: ${DOCKER_COMPOSER_TAG}
         docker_image: ${DOCKER_BASE_IMAGE}
     domainname: demo.${APACHE_DOMAIN}
     environment:
