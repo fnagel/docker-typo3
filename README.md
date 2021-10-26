@@ -155,6 +155,11 @@ Change the `DOCKER_PHP_TAG` variable in the `.env` file.
 
 ## ToDo
 
+* `APACHE_DOCUMENT_ROOT` with leading slash will add local Windows path, so we remove the `/` at the beginning
+    * This is the case when using sh files with docker commands in it, e.g. `bash docker.sh up`
+    * Using bash will end up in docker auth error, unsure why
+    * Using sh instead of bash as command works but produces the above described error
+
 * Document ftp usage
 
 * Sync folder (shared volumes) see `sync` and `remove-symlinks` branch -> obsolete due to bad performance
