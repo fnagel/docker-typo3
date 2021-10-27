@@ -5,13 +5,13 @@ ARG docker_image
 # Install composer
 FROM composer:${composer_tag} AS composer
 COPY ./composer.json /app
-RUN composer install --no-interaction --no-dev --no-progress --optimize-autoloader --ignore-platform-reqs
+RUN composer install --no-interaction --no-progress
 
 # Install webserver
 FROM ${docker_image}:${php_tag}
 
-COPY --from=composer /app/web ./web
-COPY --from=composer /app/vendor ./vendor
+# Copy files from composer container
+COPY --from=composer /app ./
 
 RUN chown -R www-data:www-data /var/www/html
 
