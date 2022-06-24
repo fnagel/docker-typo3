@@ -52,7 +52,7 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/custom.ini
 
 # Configure Apache as needed
-RUN a2enmod rewrite expires
+RUN a2enmod rewrite expires alias headers
 
 # Apache document root
 RUN sed -ri -e 's!/var/www/html!/${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
