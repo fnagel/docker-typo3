@@ -137,21 +137,28 @@ Change the `DOCKER_PHP_TAG` variable in the `.env` file.
 
 * "Docker Toolbox for Windows"
     * You might need to run `@FOR /f "tokens=*" %i IN ('docker-machine env') DO @%i` on Windows
-    * Increase disk size: 
-        `docker-machine rm default` and 
+    * Increase disk size:
+        `docker-machine rm default` and
         `docker-machine create -d virtualbox --virtualbox-disk-size "100000" default`
         This creates a 100 GB disk but erases all exiting data!
-		
+
 * "Docker for Windows WSL"
-	* Move data file: https://stackoverflow.com/a/63752264/991681
+    * Move data file: https://stackoverflow.com/a/63752264/991681
 
 * Clean up on down (unused images and volumes): `docker-compose down --rmi local -v`
-        
-* Clean up radical: `docker image prune -a`
+
+* Clean up radical (be VERY careful): `docker image prune -a`
 
 * Possible errors:
     * `ERROR: for xyz Cannot start service xyz: network 12345 not found`
         * Use `docker-compose up --force-recreate`
+
+    * `ERROR: could not find an available, non-overlapping IPv4 address pool among the defaults to assign to the network`
+        * List your networks `docker network ls`
+        * Remove unused networks `docker network rm SOME_NETWORK_ID`
+
+    * `AH00526: Syntax error on line 170 of /etc/apache2/apache2.conf: Multiple <Directory> arguments not (yet) supported.`
+        * Remove `/` from beginning of `APACHE_DOCUMENT_ROOT` env variable value
 
 ## ToDo
 
