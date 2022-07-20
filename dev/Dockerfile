@@ -24,8 +24,9 @@ RUN { \
 # Add PHP.ini debug config
 RUN { \
 		echo 'display_errors = on'; \
-		echo 'log_errors = on'; \
 		echo 'error_reporting = E_ALL'; \
+		echo 'log_errors = on'; \
+		echo 'error_log = /var/www/php-error.log'; \
 	} > /usr/local/etc/php/conf.d/development.ini
 
 # Create SSL certificate
