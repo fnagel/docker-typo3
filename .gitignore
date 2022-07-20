@@ -14,5 +14,5 @@ nbproject
 .webprj
 .php_cs.cache
 
-project/data/*.sql
-project/data/*.gz
+/project/data/*
+!/project/data/.gitkeep
