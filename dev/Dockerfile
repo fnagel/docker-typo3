@@ -48,8 +48,9 @@ RUN apt-get update \
     && apt-get install -y rsync
 
 # Install NodeJS
+ARG nodejs_tag
 RUN apt-get update \
-    && curl -fsSL https://deb.nodesource.com/setup_12.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_$nodejs_tag | bash - \
     && apt-get install -y nodejs
 
 RUN node -v && npm -v

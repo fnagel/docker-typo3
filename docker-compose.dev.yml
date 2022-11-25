@@ -9,6 +9,7 @@ services:
       args:
         php_tag: ${DOCKER_PHP_TAG}
         composer_tag: ${DOCKER_COMPOSER_TAG}
+        nodejs_tag: ${DOCKER_NODEJS_TAG}
         docker_image: "fnagel/docker-typo3-webserver"
     environment:
       - TYPO3_CONTEXT=Development
