@@ -149,6 +149,8 @@ Change the `DOCKER_PHP_TAG` variable in the `.env` file.
 
 * Clean up radical (be VERY careful): `docker image prune -a`
 
+* Do a clean build by using: `docker-compose build --no-cache `
+
 * Possible errors:
     * `ERROR: for xyz Cannot start service xyz: network 12345 not found`
         * Use `docker-compose up --force-recreate`

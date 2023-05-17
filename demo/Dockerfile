@@ -5,7 +5,7 @@ ARG docker_image
 # Install composer
 FROM composer:${composer_tag} AS composer
 COPY ./composer.json /app
-RUN composer install --no-interaction --no-progress
+RUN composer install --no-interaction --no-progress --ignore-platform-req=ext-intl
 
 # Install webserver
 FROM ${docker_image}:${php_tag}

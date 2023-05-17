@@ -1,9 +1,11 @@
 #!/bin/bash
 
+mkdir -p web/typo3conf
+
 touch web/FIRST_INSTALL
 touch web/typo3conf/ENABLE_INSTALL_TOOL
 
-php vendor/bin/typo3cms install:setup --force --no-interaction --skip-integrity-check \
+php vendor/bin/typo3 install:setup --force --no-interaction --skip-integrity-check \
     --database-name="$MYSQL_DATABASE" --use-existing-database \
     --database-host-name="db" --database-port="3306" \
     --database-user-name="$MYSQL_USER" --database-user-password="$MYSQL_PASSWORD" \
@@ -15,6 +17,6 @@ php vendor/bin/typo3cms install:setup --force --no-interaction --skip-integrity-
 # Remove duplicate site configuration
 rm -rf /var/www/html/config/sites/main
 
-php vendor/bin/typo3cms cache:flush
+php vendor/bin/typo3 cache:flush
 
 chown -R www-data:www-data /var/www/html
