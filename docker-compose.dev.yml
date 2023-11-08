@@ -2,7 +2,7 @@ version: '3'
 
 services:
   webserver:
-    image: fnagel/docker-typo3-webserver-dev:${DOCKER_PHP_TAG}
+    image: ${DOCKER_BASE_IMAGE}:${DOCKER_PHP_TAG}
     container_name: '${COMPOSE_PROJECT_NAME}-webserver'
     build:
       context: ./dev
@@ -10,7 +10,7 @@ services:
         php_tag: ${DOCKER_PHP_TAG}
         composer_tag: ${DOCKER_COMPOSER_TAG}
         nodejs_tag: ${DOCKER_NODEJS_TAG}
-        docker_image: "fnagel/docker-typo3-webserver"
+        docker_image: "${DOCKER_BASE_IMAGE}"
     environment:
       - TYPO3_CONTEXT=Development
     networks:
