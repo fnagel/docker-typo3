@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   webserver:
     image: ${DOCKER_BASE_IMAGE}-demo:${DOCKER_PHP_TAG}

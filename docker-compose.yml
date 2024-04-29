@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   webserver:
     image: fnagel/docker-typo3-webserver:${DOCKER_PHP_TAG}
