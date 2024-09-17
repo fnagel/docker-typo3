@@ -12,6 +12,8 @@ _Suitable for development and production._
 
 * A minimal production image
 * A development image with
+	* SSL support
+	* Composer
     * Xdebug
     * Mailhog
     * Adminer
