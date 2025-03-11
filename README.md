@@ -124,6 +124,12 @@ Use the following command to import your database:
 docker-compose run db bash -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -h db $MYSQL_DATABASE' < .docker/project/data/db.sql
 ```
 
+Or with a gzip file:
+
+```
+docker-compose run --rm db bash -c 'gunzip | mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -h db $MYSQL_DATABASE' < .docker/project/data/db.sql.gz &> /dev/null
+```
+
 
 ### Database credentials
 
