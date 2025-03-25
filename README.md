@@ -141,6 +141,11 @@ Default values for the database connection see `MYSQL_*` variables in the `.env`
 Change the `DOCKER_PHP_TAG` variable in the `.env` file.
 
 
+### Change PHP settings
+
+Use `vim /usr/local/etc/php/conf.d/custom.ini` to add or change PHP settings.
+
+
 ## Hints
 
 * "Docker Toolbox for Windows"
