@@ -1,9 +1,7 @@
 #!/bin/bash
 
-mkdir -p web/typo3conf
-
-touch web/FIRST_INSTALL
-touch web/typo3conf/ENABLE_INSTALL_TOOL
+touch FIRST_INSTALL
+touch var/transient/ENABLE_INSTALL_TOOL
 
 php vendor/bin/typo3 install:setup --force --no-interaction --skip-integrity-check \
     --database-name="$MYSQL_DATABASE" --use-existing-database \
