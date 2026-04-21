@@ -166,10 +166,11 @@ Use `vim /usr/local/etc/php/conf.d/custom.ini` to add or change PHP settings.
 
 * Possible errors:
     * `ERROR: for xyz Cannot start service xyz: network 12345 not found`
+    * `Error response from daemon: failed to set up container networking: network 0123afc not found`
         * Use `docker-compose up --force-recreate`
 
     * `ERROR: could not find an available, non-overlapping IPv4 address pool among the defaults to assign to the network`
-    * `Error  failed to create xyz: Error response from daemon: all predefined address pools have been fully subnetted`
+    * `Error failed to create xyz: Error response from daemon: all predefined address pools have been fully subnetted`
         * List your networks `docker network ls`
         * Remove unused networks `docker network rm SOME_NETWORK_ID`
 
