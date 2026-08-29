@@ -20,6 +20,10 @@ RUN apt-get update \
 RUN pecl install imagick \
     && docker-php-ext-enable imagick
 
+# Install APCu
+RUN pecl install apcu \
+  && docker-php-ext-enable apcu
+
 # Install localization
 RUN apt-get update \
     && apt-get install -y locales locales-all
