@@ -162,7 +162,9 @@ Use `vim /usr/local/etc/php/conf.d/custom.ini` to add or change PHP settings.
 
 * Clean up radical (be VERY careful): `docker image prune -a`
 
-* Do a clean build by using: `docker-compose build --no-cache `
+* Do a clean build by using: `docker-compose build --no-cache`
+
+* Compress WSL disk from time to time in order to save host hdd space: ` Optimize-VHD -Path "C:\Users\User Name\AppData\Local\Docker\wsl\disk\docker_data.vhdx"`
 
 * Possible errors:
     * `ERROR: for xyz Cannot start service xyz: network 12345 not found`
